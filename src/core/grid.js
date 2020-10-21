@@ -1,9 +1,42 @@
-class Grid {
+export class Grid {
   constructor(height, width) {
-    this.initialize(height, width)
+    this.height = height
+    this.width = width
+    this.rows = this.initRows(height);
   }
 
-  initialize(height, width) {
+  initRows(count) {
+    return Array(count).fill().map((_v, rowIndex) => {
+      return new Row(this, rowIndex)
+    })
+  }
+}
 
+export class Cell {
+  constructor(row, cellIndex) {
+    this.row = row;
+    this.cellIndex = cellIndex;
+  }
+
+  get x() {
+    return this.cellIndex
+  }
+
+  get y() {
+    return this.row.rowIndex
+  }
+}
+
+export class Row {
+  constructor(grid, rowIndex) {
+    this.grid = grid
+    this.rowIndex = rowIndex
+    this.cols = this.initCols(this.grid.width)
+  }
+
+  initCols(count) {
+    return Array(count).fill().map((_v, cellIndex) => {
+      return new Cell(this, cellIndex)
+    })
   }
 }
