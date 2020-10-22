@@ -10,12 +10,17 @@ export class Grid {
       return new Row(this, rowIndex)
     })
   }
+
+  getCell({x, y}) {
+    return this.rows[y].cols[x]
+  }
 }
 
 export class Cell {
   constructor(row, cellIndex) {
     this.row = row;
     this.cellIndex = cellIndex;
+    this.alive = false;
   }
 
   get x() {
