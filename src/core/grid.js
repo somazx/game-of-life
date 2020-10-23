@@ -42,6 +42,15 @@ export class Cell {
 
     return { top, right, bottom, left };
   }
+
+  get neighbourCells() {
+    const cells = {};
+    for (const cellPosition in this.neighbourCoords) {
+      const coord = this.neighbourCoords[cellPosition];
+      cells[cellPosition] = this.grid.getCell(coord);
+    }
+    return cells;
+  }
 }
 
 export class Row {

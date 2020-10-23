@@ -58,4 +58,18 @@ describe("Cell", () => {
       });
     });
   });
+
+  describe("neighbourCells", () => {
+    it("returns an object with top,right,botton,left cells", () => {
+      let grid = new Grid(10, 10);
+      let cell = grid.getCell({ x: 0, y: 0 });
+
+      expect(cell.neighbourCells).toEqual({
+        top: undefined,
+        right: expect.any(Cell),
+        bottom: expect.any(Cell),
+        left: undefined,
+      });
+    });
+  });
 });
