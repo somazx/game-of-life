@@ -31,6 +31,15 @@ export class Cell {
   get y() {
     return this.row.rowIndex
   }
+
+  get neighbourCoords() {
+    const top     = { x: this.x, y: this.y - 1 };
+    const right   = { x: this.x + 1, y: this.y };
+    const bottom  = { x: this.x, y: this.y + 1 };
+    const left    = { x: this.x - 1, y: this.y };
+
+    return {top, right, bottom, left}
+  }
 }
 
 export class Row {

@@ -44,5 +44,21 @@ describe('Cell', () => {
     expect(grid.rows[9].cols[1].x).toBe(1)
     expect(grid.rows[9].cols[1].y).toBe(9)
   })
+
+  describe('neighbourCoords', () => {
+    let grid = new Grid(10, 10);
+
+    it('returns an array of coord objects', () => {
+      let cell = grid.getCell({x:0, y: 0})
+
+      expect(cell.neighbourCoords).toEqual({
+        top: {x: 0, y: -1},
+        right: {x: 1, y: 0},
+        bottom: {x: 0, y: 1},
+        left: {x: -1, y: 0}
+      })
+    });
+
+  })
 })
 
