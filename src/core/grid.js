@@ -19,6 +19,7 @@ export class Grid {
 export class Cell {
   constructor(row, cellIndex) {
     this.row = row;
+    this.grid = this.row.grid;
     this.cellIndex = cellIndex;
     this.alive = false;
   }
