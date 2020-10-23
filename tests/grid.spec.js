@@ -14,6 +14,18 @@ describe('Grid', () => {
     expect(grid.getCell({x: 0, y: 0}).x).toBe(0)
     expect(grid.getCell({x: 0, y: 3}).y).toBe(3)
   });
+
+  describe('getCell', () => {
+    let grid = new Grid(10, 10);
+
+    it('returns a cell when given valid coords', () => {
+      expect(grid.getCell({x: 1, y: 1})).toBeInstanceOf(Cell)
+    });
+
+    it('return null when given invalid coords', () => {
+      expect(grid.getCell({x: -10, y: -10})).toBe(undefined)
+    });
+  })
 })
 
 describe('Row', () => {

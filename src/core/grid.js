@@ -12,7 +12,7 @@ export class Grid {
   }
 
   getCell({x, y}) {
-    return this.rows[y].cols[x]
+    return this.rows[y]?.cols[x]
   }
 }
 
