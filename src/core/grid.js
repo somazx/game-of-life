@@ -1,18 +1,20 @@
 export class Grid {
   constructor(height, width) {
-    this.height = height
-    this.width = width
+    this.height = height;
+    this.width = width;
     this.rows = this.initRows(height);
   }
 
   initRows(count) {
-    return Array(count).fill().map((_v, rowIndex) => {
-      return new Row(this, rowIndex)
-    })
+    return Array(count)
+      .fill()
+      .map((_v, rowIndex) => {
+        return new Row(this, rowIndex);
+      });
   }
 
-  getCell({x, y}) {
-    return this.rows[y]?.cols[x]
+  getCell({ x, y }) {
+    return this.rows[y]?.cols[x];
   }
 }
 
@@ -25,33 +27,35 @@ export class Cell {
   }
 
   get x() {
-    return this.cellIndex
+    return this.cellIndex;
   }
 
   get y() {
-    return this.row.rowIndex
+    return this.row.rowIndex;
   }
 
   get neighbourCoords() {
-    const top     = { x: this.x, y: this.y - 1 };
-    const right   = { x: this.x + 1, y: this.y };
-    const bottom  = { x: this.x, y: this.y + 1 };
-    const left    = { x: this.x - 1, y: this.y };
+    const top = { x: this.x, y: this.y - 1 };
+    const right = { x: this.x + 1, y: this.y };
+    const bottom = { x: this.x, y: this.y + 1 };
+    const left = { x: this.x - 1, y: this.y };
 
-    return {top, right, bottom, left}
+    return { top, right, bottom, left };
   }
 }
 
 export class Row {
   constructor(grid, rowIndex) {
-    this.grid = grid
-    this.rowIndex = rowIndex
-    this.cols = this.initCols(this.grid.width)
+    this.grid = grid;
+    this.rowIndex = rowIndex;
+    this.cols = this.initCols(this.grid.width);
   }
 
   initCols(count) {
-    return Array(count).fill().map((_v, cellIndex) => {
-      return new Cell(this, cellIndex)
-    })
+    return Array(count)
+      .fill()
+      .map((_v, cellIndex) => {
+        return new Cell(this, cellIndex);
+      });
   }
 }
