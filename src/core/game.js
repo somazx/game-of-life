@@ -47,5 +47,12 @@ export class Game {
   tick() {
     this.grid.cells.forEach((cell) => (cell.alive = this.liveOrDie(cell)));
   }
+
+  draw() {
+    return this.grid.cells.reduce((output, cell, count) => {
+      output += cell.alive ? "X" : "O";
+      if ((count + 1) % 10 === 0) output += "\n";
+      return output;
+    }, "");
   }
 }
