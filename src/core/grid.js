@@ -16,6 +16,20 @@ export class Grid {
   getCell({ x, y }) {
     return this.rows[y]?.cols[x];
   }
+
+  get cells() {
+    const cells = [];
+    for (const row of this.rows) {
+      for (const cell of row.cols) {
+        cells.push(cell);
+      }
+    }
+    return cells;
+  }
+
+  clear() {
+    this.cells.forEach((cell) => (cell.alive = false));
+  }
 }
 
 export class Cell {
@@ -34,22 +48,21 @@ export class Cell {
     return this.row.rowIndex;
   }
 
-  get neighbourCoords() {
-    const top = { x: this.x, y: this.y - 1 };
-    const right = { x: this.x + 1, y: this.y };
-    const bottom = { x: this.x, y: this.y + 1 };
-    const left = { x: this.x - 1, y: this.y };
+  get neighbours() {
+    // prettier-ignore
+    const matrix = [
+      [-1,-1],[-1, 0],[-1, 1],
+      [ 0,-1],        [ 0, 1],
+      [ 1,-1],[ 1, 0],[ 1, 1],
+     ];
 
-    return { top, right, bottom, left };
+    return matrix
+      .map(([x, y]) => this.grid.getCell({ x: this.x + x, y: this.y + y }))
+      .filter((cell) => cell);
   }
 
-  get neighbourCells() {
-    const cells = {};
-    for (const cellPosition in this.neighbourCoords) {
-      const coord = this.neighbourCoords[cellPosition];
-      cells[cellPosition] = this.grid.getCell(coord);
-    }
-    return cells;
+  get livingNeighbours() {
+    return this.neighbours.filter((cell) => cell.alive);
   }
 }
 

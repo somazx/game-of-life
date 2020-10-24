@@ -28,9 +28,25 @@ export class Game {
   }
 
   populateLife(randCoords = this.randCoords()) {
+    this.grid.clear();
     randCoords.forEach((coord) => {
       let cell = this.grid.getCell(coord);
       cell.alive = true;
     });
+  }
+
+  liveOrDie(cell) {
+    const count = cell.livingNeighbours.length;
+
+    if (cell.alive && count >= 2 && count <= 3) return true;
+    if (!cell.alive && count === 3) return true;
+
+    return false;
+  }
+
+  tick() {
+    const maxY = this.grid.height;
+    const maxX = this.grid.width;
+    this.grid.cells.forEach((cell) => cell.setAlive(this.liveOrDie(cell)));
   }
 }
