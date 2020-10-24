@@ -45,8 +45,7 @@ export class Game {
   }
 
   tick() {
-    const maxY = this.grid.height;
-    const maxX = this.grid.width;
-    this.grid.cells.forEach((cell) => cell.setAlive(this.liveOrDie(cell)));
+    this.grid.cells.forEach((cell) => (cell.alive = this.liveOrDie(cell)));
+  }
   }
 }
