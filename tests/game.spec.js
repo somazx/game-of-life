@@ -64,7 +64,7 @@ describe("Game", () => {
       game.populateLife(aliveCoords);
     });
 
-    test("Becomee alive if there are exactly three living neighbours", () => {
+    test("Become alive if there are exactly three living neighbours", () => {
       // x1,y1 is dead but should come to life.
 
       let cell = game.grid.getCell({ x: 1, y: 1 });
