@@ -5,6 +5,7 @@
 	let matrix;
 	let runSim;
 
+	game.initGrid(20, 20)
 	game.populateLife();
 	matrix = getCells();
 
@@ -13,7 +14,7 @@
 		game.tick();
 		matrix = getCells();
 
-		if (runSim === true) setTimeout(advanceSim, 300);
+		if (runSim === true) setTimeout(advanceSim, 200);
 	}
 
 	function getCells() {
@@ -32,6 +33,12 @@
 
 	function stopHandler() {
 		runSim = false;
+	}
+
+	function resetHandler() {
+		runSim = false;
+		game.populateLife();
+		matrix = getCells();
 	}
 </script>
 
@@ -56,6 +63,10 @@
 		}
 	}
 
+	table.grid {
+		margin-bottom: 2em;
+	}
+
 	table.grid td {
 		width: 20px;
 		height: 20px;
@@ -64,13 +75,14 @@
 
 	table.grid td.alive {
 		background-color: lightskyblue;
+		/* transition: background-color 0.2s ease-out; */
 	}
 </style>
 
 <main>
 	<h1>Conway's Game of Life</h1>
 
-	<table class="grid">
+	<table class="grid" align="center">
 		{#each matrix as row}
 			<tr>
 				{#each row as cell}
@@ -83,4 +95,5 @@
 	<button on:click={nextHandler}>Next</button>
 	<button on:click={playHandler}>Play</button>
 	<button on:click={stopHandler}>Stop</button>
+	<button on:click={resetHandler}>Reset</button>
 </main>
