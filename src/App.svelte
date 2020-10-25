@@ -3,7 +3,7 @@
 
 	const game = new Game();
 	let matrix;
-	let runSim;
+	let runSim = 0;
 
 	game.initGrid(20, 20)
 	game.populateLife();
@@ -14,7 +14,7 @@
 		game.tick();
 		matrix = getCells();
 
-		if (runSim === true) setTimeout(advanceSim, 200);
+		if (runSim !== 0) setTimeout(advanceSim, 200);
 	}
 
 	function getCells() {
@@ -22,21 +22,21 @@
 	}
 
 	function nextHandler() {
-		runSim = false;
+		runSim = 0;
 		advanceSim();
 	}
 
 	function playHandler() {
-		runSim = true;
+		runSim += 1;
 		advanceSim();
 	}
 
 	function stopHandler() {
-		runSim = false;
+		runSim = 0;
 	}
 
 	function resetHandler() {
-		runSim = false;
+		runSim = 0;
 		game.populateLife();
 		matrix = getCells();
 	}
@@ -98,7 +98,7 @@
 	</table>
 
 	<button on:click={nextHandler}>Next</button>
-	<button on:click={playHandler}>Play</button>
+	<button on:click={playHandler}>Play {runSim + 1}x</button>
 	<button on:click={stopHandler}>Stop</button>
 	<button on:click={resetHandler}>Reset</button>
 </main>
