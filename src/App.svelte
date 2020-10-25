@@ -40,6 +40,11 @@
 		game.populateLife();
 		matrix = getCells();
 	}
+
+	function handleClick(cell) {
+		cell.alive = !cell.alive
+		matrix = getCells();
+	}
 </script>
 
 <style>
@@ -86,7 +91,7 @@
 		{#each matrix as row}
 			<tr>
 				{#each row as cell}
-					<td class:alive={cell.alive}>&nbsp;</td>
+					<td on:click={() => handleClick(cell)} class:alive={cell.alive}></td>
 				{/each}
 			</tr>
 		{/each}
