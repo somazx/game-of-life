@@ -1,4 +1,4 @@
-import { Grid } from "src/core/grid.js";
+import { Grid } from "./grid.js";
 
 export class Game {
   constructor() {
@@ -13,7 +13,7 @@ export class Game {
     return Math.floor(Math.random() * max);
   }
 
-  randCoords(cellDivisor = 5) {
+  randCoords(cellDivisor = 2) {
     const cellCount = this.grid.height * this.grid.width;
     const maxLife = this.rng(cellCount / cellDivisor);
 
