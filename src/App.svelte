@@ -4,10 +4,16 @@
 	const game = new Game();
 	let matrix;
 	let runSim = 0;
+	let width = 20;
+	let height = 20;
 
-	game.initGrid(20, 20)
-	game.populateLife();
-	matrix = getCells();
+	init();
+
+	function init() {
+		game.initGrid(height, width);
+		game.populateLife();
+		matrix = getCells();
+	}
 
 	function advanceSim() {
 		console.log("calculating next tick");
@@ -42,7 +48,14 @@
 	}
 
 	function handleClick(cell) {
-		cell.alive = !cell.alive
+		cell.alive = !cell.alive;
+		matrix = getCells();
+	}
+
+	function updateHeightWidth() {
+		const savedState = game.grid.cells.filter((cell) => cell.alive);
+		game.initGrid(height, width);
+		game.populateLife(savedState);
 		matrix = getCells();
 	}
 </script>
@@ -91,7 +104,9 @@
 		{#each matrix as row}
 			<tr>
 				{#each row as cell}
-					<td on:click={() => handleClick(cell)} class:alive={cell.alive}></td>
+					<td
+						on:click={() => handleClick(cell)}
+						class:alive={cell.alive} />
 				{/each}
 			</tr>
 		{/each}
@@ -101,4 +116,25 @@
 	<button on:click={playHandler}>Play {runSim + 1}x</button>
 	<button on:click={stopHandler}>Stop</button>
 	<button on:click={resetHandler}>Reset</button>
+
+	<div>
+		<label for="height">Height ({height})</label>
+		<input
+			type="range"
+			min="5"
+			max="100"
+			on:input={updateHeightWidth}
+			bind:value={height}
+			id="height" />
+	</div>
+	<div>
+		<label for="width">Width ({width})</label>
+		<input
+			type="range"
+			min="5"
+			max="100"
+			on:input={updateHeightWidth}
+			bind:value={width}
+			id="width" />
+	</div>
 </main>
