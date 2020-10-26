@@ -58,6 +58,11 @@
 		game.populateLife(savedState);
 		matrix = getCells();
 	}
+
+	function clearHandler() {
+		game.initGrid(height, width);
+		matrix = getCells();
+	}
 </script>
 
 <style>
@@ -112,10 +117,11 @@
 		{/each}
 	</table>
 
-	<button on:click={nextHandler}>Next</button>
+	<button on:click={nextHandler}>Step</button>
 	<button on:click={playHandler}>Play {runSim + 1}x</button>
 	<button on:click={stopHandler}>Stop</button>
-	<button on:click={resetHandler}>Reset</button>
+	<button on:click={resetHandler}>Random</button>
+	<button on:click={clearHandler}>Clear</button>
 
 	<div>
 		<label for="height">Height ({height})</label>
