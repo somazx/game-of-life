@@ -31,7 +31,8 @@ export class Game {
     this.grid.clear();
     randCoords.forEach((coord) => {
       let cell = this.grid.getCell(coord);
-      cell.alive = true;
+      // if cell was found, set it as alive
+      if (cell) cell.alive = true;
     });
   }
 
