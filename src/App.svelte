@@ -7,6 +7,8 @@
 	let width = 20;
 	let height = 20;
 
+	let cellSize = 20;
+
 	init();
 
 	function init() {
@@ -63,6 +65,8 @@
 		game.initGrid(height, width);
 		matrix = getCells();
 	}
+
+	$: style = `width: ${cellSize}px; height: ${cellSize}px`;
 </script>
 
 <style>
@@ -91,8 +95,6 @@
 	}
 
 	table.grid td {
-		width: 20px;
-		height: 20px;
 		border: 1px solid lightgray;
 	}
 
@@ -110,6 +112,7 @@
 			<tr>
 				{#each row as cell}
 					<td
+						style={style}
 						on:click={() => handleClick(cell)}
 						class:alive={cell.alive} />
 				{/each}
@@ -141,6 +144,16 @@
 			max="100"
 			on:input={updateHeightWidth}
 			bind:value={width}
+			id="width" />
+	</div>
+	<div>
+		<label for="width">Cell Size ({cellSize})</label>
+		<input
+			type="range"
+			min="1"
+			max="20"
+			on:input={(e) => cellSize = e.target.value}
+			bind:value={cellSize}
 			id="width" />
 	</div>
 </main>
