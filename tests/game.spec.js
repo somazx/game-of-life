@@ -44,7 +44,7 @@ describe("Game", () => {
       );
     });
 
-    it("should return only 3 neighbours for corners", () => {
+    it("handles 'edge' cases =)", () => {
       let cell = game.grid.getCell({ x: 0, y: 0 });
 
       expect(cell.neighbours.length).toBe(3);
