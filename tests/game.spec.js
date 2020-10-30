@@ -109,21 +109,23 @@ describe("Game", () => {
       game = new Game();
 
       let aliveCoords = [
-        { x: 1, y: 0 },
         { x: 0, y: 1 },
-        { x: 2, y: 1 },
         { x: 1, y: 1 },
-        { x: 3, y: 1 },
+        { x: 2, y: 1 }
       ];
 
       game.populateLife(aliveCoords);
     });
 
-    it("should correctly update life in all cells", () => {
+    it("should correctly update life", () => {
       game.tick();
-      expect(game.grid.getCell({ x: 0, y: 0 }).alive).toBe(true);
+      expect(game.grid.getCell({ x: 1, y: 0 }).alive).toBe(true);
+      expect(game.grid.getCell({ x: 1, y: 1 }).alive).toBe(true);
+      expect(game.grid.getCell({ x: 1, y: 2 }).alive).toBe(true);
+      game.tick();
       expect(game.grid.getCell({ x: 1, y: 0 }).alive).toBe(false);
-      expect(game.grid.getCell({ x: 2, y: 0 }).alive).toBe(true);
+      expect(game.grid.getCell({ x: 1, y: 1 }).alive).toBe(true);
+      expect(game.grid.getCell({ x: 1, y: 2 }).alive).toBe(false);
     });
   });
 });
