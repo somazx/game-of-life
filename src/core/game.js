@@ -47,7 +47,9 @@ export class Game {
 
   tick() {
     const newGrid = new Grid(this.grid.height, this.grid.width);
-    this.grid.cells.forEach((cell) => (newGrid.getCell(cell).alive = this.liveOrDie(cell)));
+    this.grid.cells.forEach(
+      (cell) => (newGrid.getCell(cell).alive = this.liveOrDie(cell))
+    );
     this.grid = newGrid;
   }
 
