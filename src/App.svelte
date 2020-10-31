@@ -1,38 +1,3 @@
-<style>
-main {
-  text-align: center;
-  padding: 1em;
-  max-width: 240px;
-  margin: 0 auto;
-}
-
-h1 {
-  color: #ff3e00;
-  text-transform: uppercase;
-  font-size: 4em;
-  font-weight: 100;
-}
-
-@media (min-width: 640px) {
-  main {
-    max-width: none;
-  }
-}
-
-table.grid {
-  margin-bottom: 2em;
-}
-
-table.grid td {
-  border: 1px solid lightgray;
-}
-
-table.grid td.alive {
-  background-color: lightskyblue;
-  /* transition: background-color 0.2s ease-out; */
-}
-</style>
-
 <script>
 import { Game } from "./core/game.js";
 
@@ -161,3 +126,38 @@ $: style = `width: ${cellSize}px; height: ${cellSize}px`;
     />
   </div>
 </main>
+
+<style>
+main {
+  text-align: center;
+  padding: 1em;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #ff3e00;
+  text-transform: uppercase;
+  font-size: 4em;
+  font-weight: 100;
+}
+
+@media (min-width: 640px) {
+  main {
+    max-width: none;
+  }
+}
+
+table.grid {
+  margin-bottom: 2em;
+}
+
+table.grid td {
+  border: 1px solid lightgray;
+}
+
+table.grid td.alive {
+  background-color: lightskyblue;
+  /* transition: background-color 0.2s ease-out; */
+}
+</style>
